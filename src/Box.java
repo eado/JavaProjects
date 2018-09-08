@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Box {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         System.out.println("name\tdate");
         int i = 0;
         while (i < 3) {
