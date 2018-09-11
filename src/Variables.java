@@ -5,6 +5,9 @@
 
 public class Variables {
 	public static void main ( String[] args ) {
+		System.out.println("Omar Elamri \t 9/11");
+
+
 		//define 1 variable of each of the
 		//following data types
 		//byte		short		int 		long
