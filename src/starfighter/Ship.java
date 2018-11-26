@@ -42,7 +42,7 @@ public class Ship extends MovingThing {
 	}
 
 	public int getSpeed() {
-		return speed;
+		return speed; 
 	}
 
 	public void move(String direction) {
