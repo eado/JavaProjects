@@ -8,7 +8,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class Ammo extends MovingThing {
-	private int speed;
+	private int speed; 
 
 	public Ammo() {
 		this(0, 0, 0);
@@ -34,15 +34,15 @@ public class Ammo extends MovingThing {
 
 	public void draw(Graphics window) {
 		window.setColor(Color.RED);
-		window.fillRect(x, y, 10, 10);
+		window.fillRect(getX(), getY(), 10, 10);
 	}
 
 	public void move(String direction) {
 		switch (direction) {
-			case "n": setY(getY() + 10);   break;
-			case "s": setY(getY() - 10);   break;
-			case "e": setX(getX() + 10);   break;
-			case "w": setX(getX() - 10);   break;
+			case "DOWN": setY(getY() + 10);   break;
+			case "UP": setY(getY() - 10);   break;
+			case "RIGHT": setX(getX() + 10);   break;
+			case "LEFT": setX(getX() - 10);   break;
 		}
 	}
 

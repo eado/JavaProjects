@@ -13,22 +13,22 @@ public class Alien extends MovingThing {
 	private Image image;
 
 	public Alien() {
-		this(0, 0, 30, 30, 0);
+		this(0, 0, 100, 100, 1);
 	}
 
 	public Alien(int x, int y) {
-		this(x, y, 30, 30, 0);
+		this(x, y, 100, 100, 1);
 	}
 
 	public Alien(int x, int y, int s) {
-		this(x, y, 0, 0, s);
+		this(x, y, 100, 100, s);
 	}
 
 	public Alien(int x, int y, int w, int h, int s) {
 		super(x, y, w, h);
 		speed = s;
 		try {
-			URL url = getClass().getResource("/images/alien.jpg");
+			URL url = getClass().getResource("images/alien.jpg");
 			image = ImageIO.read(url);
 		} catch (Exception e) {
 			System.out.println("Couldn't load Alien");
@@ -40,15 +40,15 @@ public class Alien extends MovingThing {
 	}
 
 	public int getSpeed() {
-		return 0;
+		return speed;
 	}
 
 	public void move(String direction) {
 		switch (direction) {
-			case "n": setY(getY() + 10);   break;
-			case "s": setY(getY() - 10);   break;
-			case "e": setX(getX() + 10);   break;
-			case "w": setX(getX() - 10);   break;
+			case "DOWN": setY(getY() + speed);   break;
+			case "UP": setY(getY() - speed);   break;
+			case "RIGHT": setX(getX() + speed);   break;
+			case "LEFT": setX(getX() - speed);   break;
 		}
 	}
 

@@ -15,9 +15,7 @@ public class Bullets {
 	private List<Ammo> ammo;
 
 	public Bullets() {
-		for (int i = 0 ; i < size; i++) {
-			add(new Ammo());
-		}
+		ammo = new ArrayList<Ammo>();
 	}
 
 	public void add(Ammo al) {
@@ -33,7 +31,7 @@ public class Bullets {
 
 	public void moveEmAll() {
 		for (int i = 0; i < ammo.size(); i++) {
-			ammo.get(i).move("n");
+			ammo.get(i).move("UP");
 		}
 	}
 

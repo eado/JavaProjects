@@ -15,15 +15,15 @@ public class Ship extends MovingThing {
 	private Image image;
 
 	public Ship() {
-		this(10, 10, 10, 10, 10);
+		this(10, 10, 100, 100, 10);
 	}
 
 	public Ship(int x, int y) {
-		this(x, y, 10, 10, 10);
+		this(x, y, 100, 100, 10);
 	}
 
 	public Ship(int x, int y, int s) {
-		this(x, y, 10, 10 , s);
+		this(x, y, 100, 100, s);
 	}
 
 	public Ship(int x, int y, int w, int h, int s) {
@@ -47,11 +47,13 @@ public class Ship extends MovingThing {
 
 	public void move(String direction) {
 		switch (direction) {
-			case "n": setY(getY() + 10);   break;
-			case "s": setY(getY() - 10);   break;
-			case "e": setX(getX() + 10);   break;
-			case "w": setX(getX() - 10);   break;
+			case "DOWN": setY(getY() + speed); break;
+			case "UP": setY(getY() - speed); break;
+			case "RIGHT": setX(getX() + speed); break; 
+			case "LEFT": setX(getX() - speed); break;
 		}
+
+		System.out.println(this);
 	}
 
 	public void draw(Graphics window) {
@@ -59,6 +61,6 @@ public class Ship extends MovingThing {
 	}
 
 	public String toString() {
-		return super.toString() + getSpeed();
+		return super.toString() + " " + getSpeed();
 	}
 }

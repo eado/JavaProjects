@@ -18,6 +18,8 @@ public class StarFighter extends JFrame {
 		getContentPane().add(theGame);
 
 		setVisible(true);
+
+		// theGame.run();
 	}
 
 	public static void main(String args[]) {

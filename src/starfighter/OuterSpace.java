@@ -15,14 +15,9 @@ import java.util.ArrayList;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	private Ship ship;
-	private Alien alienOne;
-	private Alien alienTwo;
-
-	/*
-	 * uncomment once you are ready for this part
-	 *
-	 * private AlienHorde horde; private Bullets shots;
-	 */
+	
+	private AlienHorde horde; private Bullets shots;
+	
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -32,10 +27,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 
 		keys = new boolean[5];
 
-		ship = new Ship(50, 50);
+		ship = new Ship(200, 600);
 
-		alienOne = new Alien();
-		alienTwo = new Alien();
+		horde = new AlienHorde(7);
+
+		shots = new Bullets();
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -44,7 +40,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	}
 
 	public void update(Graphics window) {
-		paint(window);
+		paint(window); 
 	}
 
 	public void paint(Graphics window) {
@@ -63,21 +59,35 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		graphToBack.setColor(Color.BLUE);
 		graphToBack.drawString("StarFighter ", 25, 50);
 		graphToBack.setColor(Color.BLACK);
-		graphToBack.fillRect(0, 0, 800, 600);
+		graphToBack.fillRect(0, 0, getWidth(), getHeight()); 
 
-		if (keys[0] == true) {
+		if (keys[0] == true && ship.getX() > 0) {
 			ship.move("LEFT");
+		} else if (keys[1] == true && ship.getX() < getWidth()) {
+			ship.move("RIGHT");
+		} else if (keys[2] == true && ship.getY() > 0) {
+			ship.move("UP");
+		} else if (keys[3] == true && ship.getY() < getHeight()) {
+			ship.move("DOWN");
+		} else if (keys[4]) {
+			shots.add(new Ammo(ship.getX() + 45, ship.getY()));
 		}
+
+		twoDGraph.drawImage(back, null, 0, 0);
 
 		// add code to move Ship, Alien, etc.
 		ship.draw(window);
-		alienOne.draw(window);
-		alienTwo.draw(window);
 
 		// add in collision detection to see if Bullets hit the Aliens and if Bullets
 		// hit the Ship
 
-		twoDGraph.drawImage(back, null, 0, 0);
+		shots.drawEmAll(window);
+		shots.moveEmAll();
+		shots.cleanEmUp();
+
+		horde.drawEmAll(window);
+		horde.removeDeadOnes(shots.getList());
+		horde.moveEmAll();
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -125,10 +135,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 	public void run() {
 		try {
 			while (true) {
-				Thread.currentThread().sleep(5);
+				Thread.currentThread().sleep(50);
 				repaint();
 			}
 		} catch (Exception e) {
+			System.out.println("Hello");
 		}
 	}
 }
