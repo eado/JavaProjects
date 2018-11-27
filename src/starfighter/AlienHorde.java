@@ -36,7 +36,37 @@ public class AlienHorde {
 
 	public void moveEmAll() {
 		for (int i = 0; i < aliens.size(); i++) {
-			aliens.get(i).move("DOWN");
+			Alien al = aliens.get(i);
+
+			if ((al.getY() / 10) % 2 == 1) {
+				if (al.getX() == 500) {
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+				} else {
+					al.move("RIGHT");
+				}
+			} else {
+				if (al.getX() == 10) {
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+					al.move("DOWN");
+				} else {
+					al.move("LEFT");
+				}
+			}
 		}
 	}
 
@@ -49,6 +79,8 @@ public class AlienHorde {
 
 				if ((sh.getX() > al.getX() && sh.getX() < al.getX() + 100) && (sh.getY() > al.getY() && sh.getY() < al.getY() + 100)) {
 					aliens.remove(i);
+					aliens.add(new Alien(10, 100));
+					shots.remove(t);
 				}
 			}
 		}

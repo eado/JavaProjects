@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable {
-	private Ship ship;
+	private Ship ship;  
 	
 	private AlienHorde horde; private Bullets shots;
 	
@@ -30,11 +30,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		ship = new Ship(200, 600);
 
 		horde = new AlienHorde(7);
-
+ 
 		shots = new Bullets();
 
 		this.addKeyListener(this);
-		new Thread(this).start();
+		new Thread(this).start();   
 
 		setVisible(true);
 	}
