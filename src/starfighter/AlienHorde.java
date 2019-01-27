@@ -14,6 +14,8 @@ import java.util.List;
 public class AlienHorde {
 	private List<Alien> aliens;
 
+	int gameCount;
+
 	public AlienHorde(int size) {
 		aliens = new ArrayList<Alien>();
 		int x = 10;
@@ -70,6 +72,10 @@ public class AlienHorde {
 		}
 	}
 
+	public int getGameCount() {
+		return gameCount;
+	}
+
 	public void removeDeadOnes(List<Ammo> shots) {
 		for (int i = 0; i < aliens.size(); i++) {
 			Alien al = aliens.get(i);
@@ -81,6 +87,8 @@ public class AlienHorde {
 					aliens.remove(i);
 					aliens.add(new Alien(10, 100));
 					shots.remove(t);
+
+					gameCount++;
 				}
 			}
 		}

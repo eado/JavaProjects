@@ -56,10 +56,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		// we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
 
-		graphToBack.setColor(Color.BLUE);
-		graphToBack.drawString("StarFighter ", 25, 50);
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0, 0, getWidth(), getHeight()); 
+
+
+		graphToBack.setColor(Color.BLUE);
+		graphToBack.drawString("StarFighter: Points " + horde.getGameCount(), 25, 50);
+		twoDGraph.drawImage(back, null, 0, 0);
 
 		if (keys[0] == true && ship.getX() > 0) {
 			ship.move("LEFT");
@@ -72,8 +75,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		} else if (keys[4]) {
 			shots.add(new Ammo(ship.getX() + 45, ship.getY()));
 		}
-
-		twoDGraph.drawImage(back, null, 0, 0);
 
 		// add code to move Ship, Alien, etc.
 		ship.draw(window);
